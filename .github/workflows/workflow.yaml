@@ -7,12 +7,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: goodsmileduck/helm-push-action@v2
-    env:
-      SOURCE_DIR: '.'
-      CHART_FOLDER: 'app'
-      FORCE: 'True'
-      CHARTMUSEUM_URL: 'http://chartmuseum.theguardianbank.com/devops/base'
-      CHARTMUSEUM_USER: '${{ secrets.CHARTMUSEUM_USER }}'
-      CHARTMUSEUM_PASSWORD: ${{ secrets.CHARTMUSEUM_PASSWORD }}
+      - name: Checkout repository
+        uses: actions/checkout@master
+      - name: Install helm
+        run: |
+          curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+          sudo apt-get install apt-transport-https --yes
+          echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+          sudo apt-get update
+          sudo apt-get install helm
+      - name: Install Helm cm-push plugin
+        run: |
+          helm plugin install https://github.com/chartmuseum/helm-push.git
+      - name: Push helm chart to Devops Helm Chart repository
+        run: |
+          helm cm-push -f -u ${{ secrets.CHARTMUSEUM_USER }} -p ${{ secrets.CHARTMUSEUM_PASSWORD }} app/ http://chartmuseum.theguardianbank.com/devops/base
