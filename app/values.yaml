@@ -1,0 +1,144 @@
+# Default values for frontend.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+environment: ""
+
+replicaCount: 1
+
+image: {}
+  # repository: eteam/apps:guardian-merchant
+  # pullPolicy: Always
+  # # Overrides the image tag whose default is the chart appVersion.
+  # tag: ""
+
+containers:
+  ports:
+    port:
+    proto:
+
+livenessProbe:
+  enabled: false
+
+readinessProbe: {}
+#readinessProbe:
+#  enabled: true
+#  port: 22034
+#  path: "/index.html"
+
+imagePullSecrets: {}
+  # - name: dockerhub
+
+nameOverride: {} #"guardian-prod-merchant"
+
+fullnameOverride: {} #"guardian-prod-merchant"
+
+serviceAccount: {}
+  # # Specifies whether a service account should be created
+  # create: false
+  # # Annotations to add to the service account
+  # annotations: {}
+  # # The name of the service account to use.
+  # # If not set and create is true, a name is generated using the fullname template
+  # name: ""
+
+podAnnotations: {}
+  # linkerd.io/inject: enabled
+  # config.linkerd.io/proxy-cpu-limit: "1"
+  # config.linkerd.io/proxy-cpu-request: "0.2"
+  # config.linkerd.io/proxy-memory-limit: 2Gi
+  # config.linkerd.io/proxy-memory-request: 128Mi
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+service: {}
+  # type: NodePort
+  # port: 80
+  # targetPort: 22034
+
+ingress: {}
+  # enabled: true
+  # annotations:
+  #   nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  #   nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
+  #   nginx.ingress.kubernetes.io/service-upstream: "true"
+  #   cert-manager.io/cluster-issuer: guardian-staging-issuer
+  # hosts:
+  #   - host: merchant.theguardianbank.com
+  #     paths:
+  #     - path: /
+  #       backend:
+  #         serviceName: "guardian-prod-merchant"
+  #         servicePort: 80
+  # tls:
+  #  - secretName: guardian-merchant-cert-secret
+  #    hosts:
+  #      - merchant.theguardianbank.com
+  # ingressClassName: nginx
+
+resources: {}
+  # requests:
+  #   memory: "150M"
+  #   cpu: "100m"
+  # limits:
+  #   memory: "250M"
+  #   cpu: "200m"
+      # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling: {}
+  # enabled: true
+  # minReplicas: 1
+  # maxReplicas: 10
+  # targetCPUUtilizationPercentage: 85
+  # # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+app:
+  labels:
+    app:
+
+frontend: {}
+  # labels:
+  #   app: guardian-merchant-prod
+
+env: {}
+  # - name: clientSecret
+  #   valueFrom:
+  #     secretKeyRef:
+  #       key: merchant.clientSecret
+  #       name: guardian-prod-merchant
+  # - name: firestore
+  #   value: "https://firestore.googleapis.com/v1beta1/projects/j-business/databases/(default)/documents"
+
+externalSecrets: {}
+  # region: "eu-west-1"
+  # backendType: "systemManager"
+  # data: 
+  #   - key: /guardian/prod/merchant/clientSecret
+  #     name: merchant.clientSecret
+
+# configMaps:
+#   create: true

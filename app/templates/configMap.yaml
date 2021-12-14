@@ -1,0 +1,33 @@
+# {{- $globdash := .Files.Glob "configs/**" }}
+# {{  if $globdash }}
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: {{ include "app.fullname" . }}-configmap
+#   labels:
+#     {{- include "app.labels" . | nindent 4 }}
+#     {{- with .Values.app.labels }}
+#     {{- toYaml . | nindent 4 }}
+#     {{- end }}
+# data:
+#   {{- $yaml := .Files.Glob "configs/*.yaml" }}
+#   {{- $properties := .Files.Glob "configs/*.properties" }}
+#   {{- $json := .Files.Glob "configs/*.json" }}
+#   {{- $env := .Files.Glob "configs/.env" }}
+#   {{- $py := .Files.Glob "configs/*.py" }}
+#   {{ if $yaml }}
+#   {{ (.Files.Glob "configs/*.yaml").AsConfig | nindent 2 }}
+#   {{ end }}
+#   {{ if $properties }}
+#   {{ (.Files.Glob "configs/*.properties").AsConfig | nindent 2 }}
+#   {{ end }}
+#   {{ if $json }}
+#   {{ (.Files.Glob "configs/*.json").AsConfig | nindent 2 }}
+#   {{ end }}
+#   {{ if $env }}
+#   {{ (.Files.Glob "configs/.env").AsConfig | nindent 2 }}
+#   {{ end }}
+#   {{ if $py }}
+#   {{ (.Files.Glob "configs/*.py").AsConfig | nindent 2 }}
+#   {{ end }}
+# {{ end }}
