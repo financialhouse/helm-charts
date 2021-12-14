@@ -21,4 +21,7 @@ jobs:
           helm plugin install https://github.com/chartmuseum/helm-push.git
       - name: Push helm chart to Devops Helm Chart repository
         run: |
-          helm cm-push -f -u ${{ secrets.CHARTMUSEUM_USER }} -p ${{ secrets.CHARTMUSEUM_PASSWORD }} app/ http://chartmuseum.theguardianbank.com/devops/base
+          for i in $(ls -d */)
+          do    
+            helm cm-push -f -u ${{ secrets.CHARTMUSEUM_USER }} -p ${{ secrets.CHARTMUSEUM_PASSWORD }} $i/ http://chartmuseum.theguardianbank.com/devops/base
+          done

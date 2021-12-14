@@ -1,6 +1,6 @@
 apiVersion: v2
 name: app
-description: Base Helm Chart for Financialhouse frontend and backend applications
+description: Base Helm Chart for Financialhouse frontend and backend applications.
 
 # A chart can be either an 'application' or a 'library' chart.
 #
