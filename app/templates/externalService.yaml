@@ -1,0 +1,13 @@
+{{- if .Values.externalServices.enabled }}
+{{- $fullName := include "app.fullname" . -}}
+{{- range .Values.externalServices.services }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ $fullName }}-{{ .name }}"
+spec:
+  type: ExternalName
+  externalName: {{ .externalName | quote }}
+{{- end }}
+{{- end }}
