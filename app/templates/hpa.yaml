@@ -13,11 +13,7 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ include "app.fullname" . }}
-  {{- if eq .Values.environment "qa" }}
-  minReplicas: 3
-  {{- else }}
-  minReplicas: 4
-  {{- end }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
     {{- if .Values.autoscaling.targetCPUUtilizationPercentage }}
