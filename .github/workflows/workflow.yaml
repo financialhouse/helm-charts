@@ -25,3 +25,4 @@ jobs:
           do    
             helm cm-push -f -u ${{ secrets.CHARTMUSEUM_USER }} -p ${{ secrets.CHARTMUSEUM_PASSWORD }} $i/ http://chartmuseum.blor.me/devops/base
           done
+
