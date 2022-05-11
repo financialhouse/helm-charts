@@ -37,7 +37,7 @@ spec:
         - name: {{ include "app.fullname" . }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: {{ include "app.image" . }}
+          image: {{ .Values.global.image.repository }}:{{ default (include "app_image.defaultTag" .) .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.imagePullPolicy }}
           ports:
             - name: {{ .Values.containers.ports.name }}

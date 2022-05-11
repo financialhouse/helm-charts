@@ -63,8 +63,8 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
-The image to use
+Return the default image tag app version
 */}}
-{{- define "app.image" -}}
-{{- printf "%s:%s" .Values.image.repository (default .Chart.AppVersion .Values.image.tag) }}
-{{- end }}
+{{- define "app_image.defaultTag" -}}
+  {{- default .Chart.AppVersion .Values.image.tag }}
+{{- end -}}
