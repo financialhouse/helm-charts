@@ -139,4 +139,3 @@ env:
 #       externalName: eks-test.ctdmvlscllk3.eu-west-1.rds.amazonaws.com
 #     - name: redis
 #       externalName: eks-test.bq7fff.ng.0001.euw1.cache.amazonaws.com
-
