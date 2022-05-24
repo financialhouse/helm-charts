@@ -60,7 +60,7 @@ This repository will host the base helm charts for financialhouse
 
 * Push changes
 
-## Host to use the helm chart repository
+## How to use the helm chart repository
 
 * First add the repository localy
 
