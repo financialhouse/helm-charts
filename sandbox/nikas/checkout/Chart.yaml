@@ -1,6 +1,6 @@
 apiVersion: v2
-name: app
-description: Base Helm Chart for Financialhouse frontend and backend applications.
+name: checkout
+description: Nikas sandbox checkout helm chart
 type: application
 version: 7
 appVersion: 7
