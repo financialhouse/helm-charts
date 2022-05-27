@@ -107,6 +107,7 @@ externalSecrets:
   namespace: "nikas-sandbox"
   secretStoreKind: "SecretStore"
   secretStoreName: "sandbox-secret-store"
+  target: nikas-sandbox-checkout
   data: 
     - remoteRef:
         key: /nikas/sandbox/checkout/apiKey
