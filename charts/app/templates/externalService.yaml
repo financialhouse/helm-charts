@@ -10,6 +10,6 @@ metadata:
 spec:
   type: ExternalName
   externalName: {{ .externalName | quote }}
-
+  
   {{- end }}
 {{- end }}
