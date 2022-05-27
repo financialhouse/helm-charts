@@ -3,6 +3,7 @@
   {{- $fullName := include "app.fullname" . -}}
   {{- range .Values.externalServices.services }}
 
+----
 apiVersion: v1
 kind: Service
 metadata:
