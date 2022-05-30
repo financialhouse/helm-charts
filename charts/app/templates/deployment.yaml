@@ -33,6 +33,22 @@ spec:
       serviceAccountName: {{ include "app.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.initContainers }}
+      initContainers:
+      {{- range . }}
+        -  name: {{ .name | quote }}
+           image: {{ .image | default $.Values.image.repository | quote }}
+           command: {{ .command  }}
+           {{- with $.Values.env }}
+           env: 
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+            {{- if .env }}
+            {{- toYaml .env | nindent 12 }}
+            {{- end }}
+      {{- end }}
+
+      {{- end }}
       containers:
         - name: {{ include "app.fullname" . }}
           securityContext:
@@ -77,3 +93,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+
