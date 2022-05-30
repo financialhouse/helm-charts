@@ -42,7 +42,7 @@ service:
   port: 80
   targetPort: 5001
 
-initConteiners:
+initContainers:
   - name: nikas-sandbox-api-db-migrate
     image: 973672886160.dkr.ecr.eu-west-1.amazonaws.com/api-sandbox:36
     command: ["flask", "db", "upgrade"]
