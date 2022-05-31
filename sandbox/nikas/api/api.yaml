@@ -45,8 +45,10 @@ service:
 initContainers:
   - name: nikas-sandbox-api-db-migrate
     image: 973672886160.dkr.ecr.eu-west-1.amazonaws.com/api-sandbox:36
-    command: ["flask", "db", "upgrade"]
-
+    command: 
+      - flask
+      - db
+      - upgrade
 
 ingress:
   enabled: true
