@@ -37,8 +37,8 @@ spec:
       initContainers:
       {{- range . }}
         -  name: {{ .name | quote }}
-           image: {{ .image | default $.Values.image.repository | quote }}
-           command: {{ toYaml .command | nindent 12  }}
+           image: {{ .image | default $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}
+           command: {{ toYaml .command | nindent 12 }}
            {{- with $.Values.env }}
            env: 
             {{- toYaml . | nindent 12 }}
