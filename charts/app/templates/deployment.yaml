@@ -38,7 +38,7 @@ spec:
       {{- range . }}
         -  name: {{ .name | quote }}
            image: {{ .image | default $.Values.image.repository | quote }}
-           command: {{ .command  }}
+           command: {{ toYaml .command | nindent 12  }}
            {{- with $.Values.env }}
            env: 
             {{- toYaml . | nindent 12 }}
