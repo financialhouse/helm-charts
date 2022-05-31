@@ -42,8 +42,8 @@ service:
   port: 80
   targetPort: 5001
 
-initContainers:
-  - name: nikas-sandbox-api-db-migrate
+migration:
+  - name: nikas-sandbox-api-migrate
     command: 
       - flask
       - db
