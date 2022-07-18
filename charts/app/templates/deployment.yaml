@@ -59,6 +59,14 @@ spec:
             - name: {{ .Values.containers.ports.name }}
               containerPort: {{ .Values.containers.ports.port }}
               protocol: {{ .Values.containers.ports.proto }}
+          {{- if .Values.startupProbe }}
+          startupProbe:
+            httpGet:
+              path: {{ .Values.startupProbe.path }}
+              port: {{ .Values.startupProbe.port }}
+            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+            timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
+          {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
