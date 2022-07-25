@@ -68,10 +68,10 @@ ingress:
   enabled: true
   annotations:
     cert-manager.io/cluster-issuer: bahama-cert-issuer
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/service-upstream: "true"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    # nginx.ingress.kubernetes.io/rewrite-target: /
+    # nginx.ingress.kubernetes.io/service-upstream: "true"
   hosts:
     - host: sandbox-acquirerservice-apmv2.rpdpymnt.com
       paths:
