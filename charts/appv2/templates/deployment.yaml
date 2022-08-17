@@ -47,8 +47,10 @@ spec:
             {{- toYaml .env | nindent 12 }}
           {{- end }}
           {{- if .volumeMounts }}
+          {{- range .volumeMounts }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
+            {{- toYaml .volumeMounts | nindent 12 }}
+          {{- end }}
           {{- end }}
           {{- if .securityContext }}
           securityContext:
