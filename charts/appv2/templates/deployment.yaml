@@ -35,17 +35,17 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.initContainers }}
       initContainers:
-      {{- range . }}
-        -  name: {{ .name | quote }}
-           image: {{ .image | default $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}
-           command: {{ toYaml .command | nindent 12 }}
-           {{- with $.Values.env }}
-           env: 
+        {{- range . }}
+        - name: {{ .name | quote }}
+          image: {{ .image | default $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}
+          command: {{ toYaml .command | nindent 12 }}
+          {{- with $.Values.env }}
+          env: 
             {{- toYaml . | nindent 12 }}
-            {{- end }}
-            {{- if .env }}
+          {{- end }}
+          {{- if .env }}
             {{- toYaml .env | nindent 12 }}
-            {{- end }}
+          {{- end }}
           {{- with .Values.initContainers.volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
@@ -54,7 +54,7 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-      {{- end }}
+        {{- end }}
       {{- end }}
       containers:
         - name: {{ include "app.fullname" . }}
