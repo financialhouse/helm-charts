@@ -46,11 +46,11 @@ spec:
           {{- if .env }}
             {{- toYaml .env | nindent 12 }}
           {{- end }}
-          {{- with .volumeMounts }}
+          {{- if .volumeMounts }}
           volumeMounts:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .securityContext }}
+          {{- if .securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
