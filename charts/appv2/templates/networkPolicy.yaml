@@ -15,6 +15,7 @@ spec:
   ingress:
     - fromEndpoints:
         - {}
+  {{- range $rule := .Values.networkPolicy.egressRules }}
   egress:
     - toEndpoints:
         - matchLabels:
@@ -29,13 +30,8 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - {}
-    {{- range .Values.networkPolicy.egress.toEntities }}
-    - toEntities:
-        - {{ . }}
-      toPorts:
-        {{- range .ports }}
-        - ports:
-            - port: {{ . | quote }}
-        {{- end }}
+    {{- range $rule.toEntities }}
+    {{- toYaml . | nindent 4 }}
     {{- end }}
+  {{- end }}
 {{- end }}
