@@ -15,8 +15,9 @@ spec:
   ingress:
     - fromEndpoints:
         - {}
-  {{- range $rule := .Values.networkPolicy.egressRules }}
+  {{- if .Values.networkPolicy.egressRules }}
   egress:
+  {{- range $rule := .Values.networkPolicy.egressRules }}
     - toEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: kube-system
@@ -30,9 +31,10 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - {}
-    {{- range $rule.toEntities }}
     - toEntities:
-        {{- toYaml . | nindent 8 }}
+        {{- toYaml $rule.toEntities | nindent 8 }}
+      toPorts:
+        {{- toYaml $rule.toPorts | nindent 8 }}
     {{- end }}
   {{- end }}
 {{- end }}
