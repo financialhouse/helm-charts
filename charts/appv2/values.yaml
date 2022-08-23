@@ -120,6 +120,19 @@ affinity: {}
 app: {}
   # labels:
   #   app: bahama-sandbox-pool1
+
+networkPolicy: {}
+
+# networkPolicy:
+#   egress:
+#     toEntities:
+#       - world
+#       ports:
+#         - 80
+#         - 443
+#         - 6379
+
+
 env: {}
   # - name: BAH_POOL_1_SPRING_PROFILE
   #   value: "sandbox"
