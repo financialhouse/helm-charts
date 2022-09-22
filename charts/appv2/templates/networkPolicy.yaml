@@ -15,6 +15,9 @@ spec:
   ingress:
     - fromEndpoints:
         - {}
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: ingress-nginx
   {{- if .Values.networkPolicy.egressRules }}
   egress:
   {{- range $rule := .Values.networkPolicy.egressRules }}
