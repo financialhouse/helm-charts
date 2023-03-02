@@ -85,6 +85,9 @@ ingress: {}
   #      - sandbox-acquirerservice-apmv2.rpdpymnt.com
   # ingressClassName: nginx-sandbox
 
+# Second ingress to be enabled if needed. For example if a location is already controlled by another ingress resoure but in the same location you need to add another whitelisting rule. 
+ingress2: {} 
+
 resources:
   requests:
     memory: "1G"
