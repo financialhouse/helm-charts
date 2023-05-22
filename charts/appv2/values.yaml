@@ -22,6 +22,7 @@ livenessProbe:
   path: "/pool1/health"
   initialDelaySeconds: 300
   periodSeconds: 5
+  timeoutSeconds: 10
 
 readinessProbe:
   enabled: true
@@ -29,6 +30,7 @@ readinessProbe:
   path: "/pool1/health"
   initialDelaySeconds: 300
   periodSeconds: 5
+  timeoutSeconds: 10
 
 imagePullSecrets:
   - name: dockerhub
