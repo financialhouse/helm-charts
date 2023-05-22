@@ -76,6 +76,7 @@ spec:
             initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds }}
             failureThreshold: {{ .Values.startupProbe.failureThreshold }}
             periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds | default 1 }}
           {{- end }}
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
