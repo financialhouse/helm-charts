@@ -1,27 +1,52 @@
-# Default values for appv3.
+# Default values for app.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+environment: "sandbox"
 
 replicaCount: 1
 
 image:
-  repository: nginx
-  pullPolicy: IfNotPresent
+  repository: eteam/bahama-pool1
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
+containers:
+  ports:
+    port: 8084
+    proto: TCP
+
+livenessProbe:
+  enabled: true
+  port: 8084
+  path: "/pool1/health"
+  initialDelaySeconds: 300
+  periodSeconds: 5
+  timeoutSeconds: 10
+
+readinessProbe:
+  enabled: true
+  port: 8084
+  path: "/pool1/health"
+  initialDelaySeconds: 300
+  periodSeconds: 5
+  timeoutSeconds: 10
+
+imagePullSecrets:
+  - name: dockerhub
+
+nameOverride: "bahama-sandbox-pool1"
+
+fullnameOverride: "bahama-sandbox-pool1"
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: yes
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "bahama-sandbox-pool1"
 
 podAnnotations: {}
 
@@ -36,28 +61,43 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-service:
-  type: ClusterIP
-  port: 80
+service: {}
+  # type: NodePort
+  # port: 80
+  # targetPort: 8084
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
+ingress: {}
+  # enabled: true
+  # annotations:
+  #   cert-manager.io/cluster-issuer: bahama-cert-issuer
+  #   # nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  #   # nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+  #   # nginx.ingress.kubernetes.io/rewrite-target: /
+  #   # nginx.ingress.kubernetes.io/service-upstream: "true"
+  # hosts:
+  #   - host: sandbox-acquirerservice-apmv2.rpdpymnt.com
+  #     paths:
+  #     - path: /
+  #       backend:
+  #         serviceName: "bahama-sandbox-pool1"
+  #         servicePort: 80
+  # tls:
+  #  - secretName: bahama-apmv2-cert-secret
   #    hosts:
-  #      - chart-example.local
+  #      - sandbox-acquirerservice-apmv2.rpdpymnt.com
+  # ingressClassName: nginx-sandbox
 
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
+# Second ingress to be enabled if needed. For example if a location is already controlled by another ingress resoure but in the same location you need to add another whitelisting rule. 
+ingress2: {} 
+
+resources:
+  requests:
+    memory: "1G"
+    cpu: "250m"
+  limits:
+    memory: "2G"
+    cpu: "500m"
+      # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
@@ -70,13 +110,94 @@ resources: {}
 
 autoscaling:
   enabled: false
-  minReplicas: 1
-  maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
+  # minReplicas: 1
+  # maxReplicas: 10
+  # targetCPUUtilizationPercentage: 85
   # targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
+    # Environment: "qa"
 
 tolerations: []
 
 affinity: {}
+
+app: {}
+  # labels:
+  #   app: bahama-sandbox-pool1
+
+networkPolicy: {}
+
+# networkPolicy:
+#   egress:
+#     toEntities:
+#       - world
+#       ports:
+#         - 80
+#         - 443
+#         - 6379
+
+
+env: {}
+  # - name: BAH_POOL_1_SPRING_PROFILE
+  #   value: "sandbox"
+
+configmap: {}
+# configmap:
+#   data:
+#     applicaiton.yaml: |
+#       spring:
+#         profiles:
+#           active: dev,mock-connect,quartz
+#         datasource:
+#           url: jdbc:postgresql://jbusiness-dev.cixwb4lkt0wn.eu-west-1.rds.amazonaws.com/jbusinessdev
+#           username: jbusinessdev
+#           password: "{{ .srping_datasource_password }}"
+#         redis:
+#           host: jbusiness-dev1.suu8x9.0001.euw1.cache.amazonaws.com
+#           port: 6379
+
+volumeMounts: {}
+# volumeMounts:
+#   - name: application.yaml
+#     mountPath: "/app/configs/application.yaml"
+#     readOnly: true
+
+volumes: {}
+# volumes:
+#   - name: application.yaml
+#     configMap:
+#       # Provide the name of the ConfigMap containing the files you want
+#       # to add to the container
+#       name: bahama-sandbox-apmv2
+
+
+# externalSecrets:
+#   namespace: "bahama-sandbox"
+#   secretStoreKind: "SecretStore"
+#   secretStoreName: "sandbox-secret-store"
+#   target: bahama-sandbox-apmv2
+#   templateFrom:
+#     - configMap:
+#       name: bahama-sandbox-apmv2
+#       items:
+#       - key: config map data key name
+#   data:
+#     - remoteRef:
+#         key: /bahama/sandbox/apmv2/NEW_RELIC_LICENSE_KEY
+#       secretKey: NEW_RELIC_LICENSE_KEY
+#     - remoteRef:
+#         key: /bahama/sandbox/apmv2/BAH_APM_AUTH_ADMIN_CLIENT_SECRET
+#       secretKey: BAH_APM_AUTH_ADMIN_CLIENT_SECRET
+#     - remoteRef:
+#         key: /bahama/sandbox/apmv2/spring_datasource_password
+#       secretKey: spring_datasource_password
+
+
+
+# externalServices: 
+#   services:
+#     - name: postgre
+#       externalName: eks-test.ctdmvlscllk3.eu-west-1.rds.amazonaws.com
+#     - name: redis
+#       externalName: eks-test.bq7fff.ng.0001.euw1.cache.amazonaws.com
