@@ -1,0 +1,43 @@
+{{- if .Values.networkPolicy }}
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "app.fullname" . }}
+  labels:
+    {{- include "app.labels" . | nindent 4 }}
+    {{- with .Values.app.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  endpointSelector:
+    matchLabels:
+      app: {{ include "app.fullname" . }}
+  ingress:
+    - fromEndpoints:
+        - {}
+    - fromEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: ingress-nginx
+  {{- if .Values.networkPolicy.egressRules }}
+  egress:
+  {{- range $rule := .Values.networkPolicy.egressRules }}
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
+    - toEndpoints:
+        - {}
+    - toEntities:
+        {{- toYaml $rule.toEntities | nindent 8 }}
+      toPorts:
+        {{- toYaml $rule.toPorts | nindent 8 }}
+    {{- end }}
+  {{- end }}
+{{- end }}
