@@ -3,7 +3,7 @@ entries:
   app:
   - apiVersion: v2
     appVersion: v0.0.1
-    created: "2023-07-07T16:35:21.620899+01:00"
+    created: "2023-07-11T10:59:37.787576+01:00"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: b6af36b94432a4e3dd367bdd4d901e53ae58d78189dea4e63a15b896f2a1f37c
     name: app
@@ -14,7 +14,7 @@ entries:
   appv2:
   - apiVersion: v2
     appVersion: v0.0.2
-    created: "2023-07-07T16:35:21.621944+01:00"
+    created: "2023-07-11T10:59:37.788482+01:00"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: 729ea74539237bca20d8a89c99905d1e5ffd66a3012c817e57bb6ca4f5aaf4a1
     name: appv2
@@ -24,7 +24,7 @@ entries:
     version: v0.0.2
   - apiVersion: v2
     appVersion: v0.0.1
-    created: "2023-07-07T16:35:21.621438+01:00"
+    created: "2023-07-11T10:59:37.788076+01:00"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: ed7d183f00d3bdd31125af815b9e452207dc2ba61490f1bb1216696ef6f2462d
     name: appv2
@@ -35,9 +35,9 @@ entries:
   appv3:
   - apiVersion: v2
     appVersion: v0.0.1
-    created: "2023-07-07T16:35:21.622388+01:00"
+    created: "2023-07-11T10:59:37.788917+01:00"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
-    digest: 0e30d978c899494eb97abab026eb71a0975cbb80ae9190d5c955dc840f9f698f
+    digest: 58370a47416ce05137141cfc8b831938c5ad0bf9584eb2c2ba2264948644b120
     name: appv3
     type: application
     urls:
@@ -46,7 +46,7 @@ entries:
   test:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-07-07T16:35:21.622807+01:00"
+    created: "2023-07-11T10:59:37.789343+01:00"
     description: A Helm chart for Kubernetes
     digest: 949f27e346a18e4a802bfde1870647bd9572386c655ecaaf7b67e813d5dd2859
     name: test
@@ -54,4 +54,4 @@ entries:
     urls:
     - https://financialhouse.github.io/helm-charts/test-0.1.0.tgz
     version: 0.1.0
-generated: "2023-07-07T16:35:21.620171+01:00"
+generated: "2023-07-11T10:59:37.786778+01:00"
