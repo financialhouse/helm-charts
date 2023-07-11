@@ -20,6 +20,10 @@ spec:
   template:
     metadata:
       name: "{{ $.Release.Name }}"
+      annotations:
+        {{- with $.Values.app.annotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
       labels:
         app.kubernetes.io/managed-by: {{ $.Release.Service | quote }}
         app.kubernetes.io/instance: {{ $.Release.Name | quote }}
