@@ -4,10 +4,16 @@
 environment: "sandbox"
 
 replicaCount: 1
-
+imagePullSecrets:
+  - name: dockerhub
+serviceAccount: cverse-test-api
+nodeSelector:
+  Environment: sandbox
+  Tier: backend
 containers:
   - name: cverse-test-api
     image: 069931464138.dkr.ecr.eu-west-1.amazonaws.com/api-sandbox:75
+    tag: 12
     ports:
       - containerPort: 8181
         protocol: TCP
@@ -48,12 +54,7 @@ containers:
       periodSeconds: 12
       successThreshold: 1
       failureThreshold: 30
-    imagePullSecrets:
-      - name: dockerhub
-    serviceAccount: cverse-test-api
-    nodeSelector:
-      Environment: sandbox
-      Tier: backend
+
     env:
       - name: "foo"
         value: "bar"
