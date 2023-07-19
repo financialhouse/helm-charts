@@ -61,9 +61,7 @@ spec:
 
       {{- with .Values.containers }}
       containers:
-        {{- range . }}
-        {{ . | toYaml| nindent 10}}
-        {{- end }}
+        {{ . | toYaml | nindent 10}}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
