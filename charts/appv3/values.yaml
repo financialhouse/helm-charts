@@ -135,15 +135,14 @@ app: {}
 networkPolicy: {}
 
 # networkPolicy:
-#   egress:
-#     toEntities:
-#       - world
-#       ports:
-#         - 80
-#         - 443
-#         - 6379
-
-
+#   egressRules:
+#     - toEntities:
+#         - world
+#       toPorts:
+#         - ports:
+#             - port: "443"
+#         - ports:
+#             - port: "80"
 
   # - name: BAH_POOL_1_SPRING_PROFILE
   #   value: "sandbox"
