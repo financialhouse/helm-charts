@@ -39,5 +39,26 @@ spec:
       toPorts:
         {{- toYaml $rule.toPorts | nindent 8 }}
     {{- end }}
+    {{- if .Values.networkPolicy.egressRulesFQDNs }}
+    {{- range $rule := .Values.networkPolicy.egressRulesFQDNs }}
+    - toFQDNs:
+        {{- if .Values.networkPolicy.egressRulesFQDNs.toName }}
+        - matchName: {{- toYaml $rule.toName | nindent 8 }}
+        {{- end }}
+        {{- if .Values.networkPolicy.egressRulesFQDNs.toPattern }}
+        - matchPattern: {{- toYaml $rule.toPattern | nindent 8 }}
+        {{- end }}
+      toPorts:
+          - ports: {{- toYaml $rule.toPorts | nindent 8 }}
+    {{- end }}
+    {{- end }}
+    {{- if .Values.networkPolicy.egressRulesCIDR }}
+    {{- range $rule := .Values.networkPolicy.egressRulesCIDR }}
+    - toCIDRSet:
+        - cidr: {{- toYaml $rule.toCIDR | nindent 8 }}
+      toPorts:
+          - ports: {{- toYaml $rule.toPorts | nindent 8 }}
+    {{- end }}
+    {{- end }}
   {{- end }}
 {{- end }}
