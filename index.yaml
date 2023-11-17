@@ -3,7 +3,7 @@ entries:
   app:
   - apiVersion: v2
     appVersion: v0.0.1
-    created: "2023-08-18T15:11:10.496691+02:00"
+    created: "2023-11-17T11:12:05.422164Z"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: b6af36b94432a4e3dd367bdd4d901e53ae58d78189dea4e63a15b896f2a1f37c
     name: app
@@ -14,7 +14,7 @@ entries:
   appv2:
   - apiVersion: v2
     appVersion: v0.0.2
-    created: "2023-08-18T15:11:10.497646+02:00"
+    created: "2023-11-17T11:12:05.42357Z"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: 729ea74539237bca20d8a89c99905d1e5ffd66a3012c817e57bb6ca4f5aaf4a1
     name: appv2
@@ -24,7 +24,7 @@ entries:
     version: v0.0.2
   - apiVersion: v2
     appVersion: v0.0.1
-    created: "2023-08-18T15:11:10.497182+02:00"
+    created: "2023-11-17T11:12:05.423204Z"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: ed7d183f00d3bdd31125af815b9e452207dc2ba61490f1bb1216696ef6f2462d
     name: appv2
@@ -34,8 +34,18 @@ entries:
     version: v0.0.1
   appv3:
   - apiVersion: v2
+    appVersion: v0.0.4
+    created: "2023-11-17T11:12:05.425888Z"
+    description: Base Helm Chart for Financialhouse frontend and backend applications.
+    digest: 8fbde5749b1e63fd8bedba4ca989fd52a54fdbe59f3efb6242e7d34f39236008
+    name: appv3
+    type: application
+    urls:
+    - https://financialhouse.github.io/helm-charts/appv3-v0.0.4.tgz
+    version: v0.0.4
+  - apiVersion: v2
     appVersion: v0.0.3
-    created: "2023-08-18T15:11:10.499225+02:00"
+    created: "2023-11-17T11:12:05.425464Z"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: 69b72d055dd25eef30ecd48e823aa1f35eec9048a06dcda3b88bad943dc92c58
     name: appv3
@@ -45,7 +55,7 @@ entries:
     version: v0.0.3
   - apiVersion: v2
     appVersion: v0.0.2
-    created: "2023-08-18T15:11:10.498691+02:00"
+    created: "2023-11-17T11:12:05.424544Z"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: 64d2899ba765515cc80313a6a85546f6be00a596b8fe4ba7ee51f61cdf3e848d
     name: appv3
@@ -55,7 +65,7 @@ entries:
     version: v0.0.2
   - apiVersion: v2
     appVersion: v0.0.1
-    created: "2023-08-18T15:11:10.498113+02:00"
+    created: "2023-11-17T11:12:05.424113Z"
     description: Base Helm Chart for Financialhouse frontend and backend applications.
     digest: eba037b6ea61feb14a7a1f96bbf7ee6a6d5d0ee840ecc98560d676ece23aea22
     name: appv3
@@ -66,7 +76,7 @@ entries:
   test:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-08-18T15:11:10.499588+02:00"
+    created: "2023-11-17T11:12:05.426489Z"
     description: A Helm chart for Kubernetes
     digest: 949f27e346a18e4a802bfde1870647bd9572386c655ecaaf7b67e813d5dd2859
     name: test
@@ -74,4 +84,4 @@ entries:
     urls:
     - https://financialhouse.github.io/helm-charts/test-0.1.0.tgz
     version: 0.1.0
-generated: "2023-08-18T15:11:10.496015+02:00"
+generated: "2023-11-17T11:12:05.421633Z"
