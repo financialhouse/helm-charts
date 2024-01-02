@@ -12,9 +12,9 @@ spec:
   endpointSelector:
     matchLabels:
       app: {{ include "app.fullname" . }}
+  ingress:
   {{- if .Values.networkPolicy.IngressRules }}
   {{- with .Values.networkPolicy.IngressRules }}
-  ingress:
     {{- toYaml . | nindent 4 }}
     {{- end }}
   {{- else }}
@@ -42,5 +42,5 @@ spec:
               - matchPattern: "*"
     - toEndpoints:
         - {}
-    {{- end }}
+  {{- end }}
 {{- end }}
