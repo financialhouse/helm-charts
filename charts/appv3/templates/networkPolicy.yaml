@@ -12,9 +12,15 @@ spec:
   endpointSelector:
     matchLabels:
       app: {{ include "app.fullname" . }}
+  {{- if .Values.networkPolicy.IngressRules }}
+  {{- with .Values.networkPolicy.IngressRules }}
   ingress:
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- else }}
     - fromEndpoints:
         - {}
+  {{- end }}
     - fromEndpoints:
         - matchLabels:
             io.kubernetes.pod.namespace: ingress-nginx
