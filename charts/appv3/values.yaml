@@ -132,7 +132,7 @@ app: {}
   # labels:
   #   app: bahama-sandbox-pool1
 
-networkPolicy: {}
+#networkPolicy: {}
 
 # networkPolicy:
 #   egressRules:
@@ -143,6 +143,11 @@ networkPolicy: {}
 #             - port: "443"
 #         - ports:
 #             - port: "80"
+#   IngressRules:
+#     - fromEndpoints:
+#       - matchLabels:
+#           app: galileo-sandbox-ccard
+
 
   # - name: BAH_POOL_1_SPRING_PROFILE
   #   value: "sandbox"
