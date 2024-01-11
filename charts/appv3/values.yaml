@@ -11,7 +11,7 @@ nodeSelector:
   Environment: sandbox
   Tier: backend
 cron_job:
-  # schedule: "* * * * *"
+  schedule: "3 * * * *"
   containers:
     - name: galileo-test-ccard-currencies-process
       image: 634637966197.dkr.ecr.eu-west-1.amazonaws.com/ccard-test:1280
