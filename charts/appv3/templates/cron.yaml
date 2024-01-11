@@ -1,7 +1,7 @@
 {{- if .Values.cron_job }}
 
 apiVersion: batch/v1
-kind: CronJobkm
+kind: CronJob
 metadata:
   name: {{ .name | quote}}
   labels:
