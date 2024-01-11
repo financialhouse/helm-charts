@@ -21,6 +21,6 @@ spec:
           restartPolicy: OnFailure
           {{- with .Values.cron_job.containers }}
           containers:
-            {{ . | toYaml | nindent 8}}
+            {{ . | toYaml | nindent 10}}
           {{- end }}
 {{- end }}
