@@ -26,6 +26,15 @@ nodeSelector:
 #         requests:
 #           cpu: "200m"
 #           memory: "256Mi"
+#   volumes:
+#     - name: scratch-volume
+#       ephemeral:
+#         volumeClaimTemplate:
+#           spec:
+#             accessModes: [ "ReadWriteOnce" ]
+#             resources:
+#               requests:
+#                 storage: 1Gi
 containers:
   - name: cverse-test-api
     image: 069931464138.dkr.ecr.eu-west-1.amazonaws.com/api-sandbox:75
