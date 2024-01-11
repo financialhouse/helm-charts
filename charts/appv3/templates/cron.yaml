@@ -1,7 +1,7 @@
 {{- if .Values.cron_job }}
 
 apiVersion: batch/v1
-kind: CronJob
+kind: CronJobkm
 metadata:
   name: {{ .name | quote}}
   labels:
@@ -21,6 +21,6 @@ spec:
           restartPolicy: OnFailure
           {{- with .Values.cron_job.containers }}
           containers:
-            {{ . | toYaml | nindent 8}}
+            {{ . | toYaml | nindent 10}}
           {{- end }}
 {{- end }}
