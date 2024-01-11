@@ -1,0 +1,26 @@
+{{- if .Values.cron_job }}
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .name | quote}}
+  labels:
+    app.kubernetes.io/managed-by: {{ $.Release.Service | quote }}
+    app.kubernetes.io/instance: {{ $.Release.Name | quote }}
+    app.kubernetes.io/version: {{ $.Chart.AppVersion }}
+    helm.sh/chart: "{{ $.Chart.Name }}-{{ $.Chart.Version }}"
+    {{- with $.Values.app.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  schedule: {{ .Values.cron_job.schedule }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          {{- with .Values.cron_job.containers }}
+          containers:
+            {{ . | toYaml | nindent 8}}
+          {{- end }}
+{{- end }}
