@@ -14,6 +14,8 @@ metadata:
     {{- end }}
 spec:
   schedule: {{ .Values.cron_job.schedule }}
+  successfulJobsHistoryLimit: {{ .Values.cron_job.successfulJobsHistoryLimit | default 1 }}
+  failedJobsHistoryLimit: {{ .Values.cron_job.failedJobsHistoryLimit | default 1 }}
   jobTemplate:
     spec:
       template:
