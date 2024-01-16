@@ -11,6 +11,7 @@ nodeSelector:
   Environment: sandbox
   Tier: backend
 # cron_job:
+#   successfulJobsHistoryLimit: 2
 #   schedule: "3 * * * *"
 #   containers:
 #     - name: galileo-test-ccard-currencies-process
