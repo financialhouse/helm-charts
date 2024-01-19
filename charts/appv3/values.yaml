@@ -132,7 +132,47 @@ ingress: {}
   # ingressClassName: nginx-sandbox
 
 # Second ingress to be enabled if needed. For example if a location is already controlled by another ingress resoure but in the same location you need to add another whitelisting rule. 
-ingress2: {} 
+ingress2: {}
+
+ingresses: {}
+  # - name: steller-sandbox-wallet-0
+  #   ingressClassName: nginx-sandbox
+  #   annotations:
+  #     cert-manager.io/cluster-issuer: cert-issuer
+  #     nginx.ingress.kubernetes.io/whitelist-source-range: "34.240.59.77/32, 34.240.202.110/32"
+  #   rules:
+  #     - host: sandbox-wallet.speedyteller.org
+  #       paths:
+  #         - path: /
+  #           pathType: Prefix
+  #           backend:
+  #             service:
+  #               name: "steller-sandbox-wallet"
+  #               port:
+  #                 number: 80
+  #   tls:
+  #     - secretName: steller-sandbox-wallet-certificate
+  #       hosts:
+  #         - "sandbox-wallet.speedyteller.org"
+  # - name: steller-sandbox-wallet-1
+  #   ingressClassName: nginx-sandbox
+  #   annotations:
+  #     cert-manager.io/cluster-issuer: cert-issuer
+  #     nginx.ingress.kubernetes.io/whitelist-source-range: "34.240.59.77/32, 34.240.202.110/32"
+  #   rules:
+  #     - host: sandbox-wallet.luqapay.org
+  #       paths:
+  #         - path: /swagger-ui.html
+  #           pathType: Prefix
+  #           backend:
+  #             service:
+  #               name: "steller-sandbox-wallet"
+  #               port:
+  #                 number: 80
+  #   tls:
+  #     - secretName: steller-sandbox-wallet-certificate2
+  #       hosts:
+  #         - "sandbox-wallet.luqapay.org"
 
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
