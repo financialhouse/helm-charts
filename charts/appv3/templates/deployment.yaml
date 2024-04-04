@@ -35,30 +35,8 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- with .Values.initContainers }}
       initContainers:
-        {{- range . }}
-        - name: {{ .name | quote }}
-          image: {{ .image | default $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}
-          command: {{ toYaml .command | nindent 12 }}
-          {{- with $.Values.env }}
-          env: 
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- if .env }}
-            {{- toYaml .env | nindent 12 }}
-          {{- end }}
-          {{- if .volumeMounts }}
-          {{- range .volumeMounts }}
-          volumeMounts:
-            {{- toYaml .volumeMounts | nindent 12 }}
-          {{- end }}
-          {{- end }}
-          {{- if .securityContext }}
-          securityContext:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-        {{- end }}
+         {{ . | toYaml | nindent 10}}
       {{- end }}
-
       {{- with .Values.containers }}
       containers:
         {{ . | toYaml | nindent 10}}
