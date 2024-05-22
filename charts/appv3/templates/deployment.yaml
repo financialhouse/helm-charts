@@ -10,7 +10,7 @@ metadata:
 spec:
   {{- if .Values.deployment.strategy }}
   strategy:
-    type: {{ .Values.deployment.strategy }}
+    type: {{ .Values.deployment.strategy | quote }}
   {{- end }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
