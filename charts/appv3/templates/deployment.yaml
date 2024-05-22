@@ -8,9 +8,9 @@ metadata:
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
-  {{- if .Values.deploymentStrategy }}
+  {{- if .Values.deployment.strategy }}
   strategy:
-    type: {{ .Values.deploymentStrategy }}
+    type: {{ .Values.deployment.strategy }}
   {{- end }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
