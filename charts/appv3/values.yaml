@@ -9,9 +9,9 @@ imagePullSecrets:
 # deployment:
 #   strategy: "Recreate"
 # serviceAccount: cverse-test-api
-nodeSelector:
-  Environment: sandbox
-  Tier: backend
+
+nodeSelector: {}
+
 # cron_job:
 #   successfulJobsHistoryLimit: 2
 #   schedule: "3 * * * *"
