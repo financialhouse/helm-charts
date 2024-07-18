@@ -67,6 +67,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.volumes }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds | default 30 }}
       volumes:
         {{- toYaml . | nindent 8 }}
       {{- end }}
