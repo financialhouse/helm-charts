@@ -240,6 +240,8 @@ volumeMounts: {}
 #     mountPath: "/app/configs/application.yaml"
 #     readOnly: true
 
+terminationGracePeriodSeconds: 30
+
 volumes: {}
 # volumes:
 #   - name: application.yaml
