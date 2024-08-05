@@ -114,7 +114,7 @@ service:
 
 pdb:
   enabled: false
-  minAvailable: 1
+  minAvailable: "1"
 
 ingress: {}
   # enabled: true
