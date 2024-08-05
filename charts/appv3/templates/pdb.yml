@@ -13,5 +13,5 @@ spec:
   maxUnavailable: {{ .Values.pdb.maxUnavailable | quote }}
   selector:
     matchLabels:
-      {{- include "app.selectorLabels" . | nindent 4 }}
+      {{- include "app.selectorLabels" . | nindent 6 }}
 {{- end }}
