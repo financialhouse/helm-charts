@@ -10,7 +10,6 @@ metadata:
     {{- end }}
 spec:
   minAvailable: {{ .Values.pdb.minAvailable | quote }}
-  maxUnavailable: {{ .Values.pdb.maxUnavailable | quote }}
   selector:
     matchLabels:
       {{- include "app.selectorLabels" . | nindent 6 }}
