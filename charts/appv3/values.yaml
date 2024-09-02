@@ -109,8 +109,17 @@ podSecurityContext: {}
 service:
   type: NodePort
   port: 80
-  targetPort: 8084
-
+  targetPort: 8081
+  
+# multiService:
+#   - name: "bahama-sandbox-pool1"
+#     type: NodePort
+#     port: 80
+#     targetPort: 8081
+#   - name: "bahama-sandbox-pool2"
+#     type: NodePort
+#     port: 80
+#     targetPort: 8084
 
 pdb:
   enabled: false
