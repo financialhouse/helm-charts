@@ -1,0 +1,13 @@
+{{- if .Values.volumeClaim }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "app.fullname" . }}
+spec:
+  accessModes: 
+    - {{ .Values.volumeClaim.accessMode }}
+  storageClassName: {{ .Values.volumeClaim.storageClass }}
+  resources:
+    requests:
+      storage: {{ .Values.volumeClaim.size }}
+{{- end }}
