@@ -296,6 +296,7 @@ volumes: {}
 #       externalName: eks-test.bq7fff.ng.0001.euw1.cache.amazonaws.com
 
 # volumeClaim:
+#   name: scratch-volume
 #   accessMode: ReadWriteOnce
 #   storageClass: standard
 #   size: 10Gi
