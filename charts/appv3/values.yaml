@@ -124,11 +124,11 @@ service:
 # singleServiceMultiPort:
 #   - name: node-test2
 #     annotations:
-#       loadBalancerName: "cryptobunq-prod-node-test2"
+#       loadBalancerName: "test-123-node-test2"
 #       scheme: "internal"
 #       backendProtocol: "tcp"
 #       attributes: "load_balancing.cross_zone.enabled=true"
-#       securityGroups: "sg-08e833371be77cd44"
+#       securityGroups: "sg-test0123"
 #       targetType: "instance"
 #     type: LoadBalancer
 #     ports:
