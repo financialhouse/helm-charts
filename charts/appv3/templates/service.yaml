@@ -8,6 +8,10 @@ metadata:
     {{- with .Values.app.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  {{- if .annotations }}
+  annotations:
+    {{- toYaml .annotations | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -33,6 +37,10 @@ metadata:
     {{- with $.Values.app.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  {{- if .annotations }}
+  annotations:
+    {{- toYaml .annotations | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .type }}
   ports:
@@ -48,3 +56,37 @@ spec:
 ---
 {{- end }}
 {{- end }}
+--- 
+{{- if .Values.singleServiceMultiPort }}
+{{- range .Values.singleServiceMultiPort }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .name }}
+  labels:
+    {{- include "app.labels" $ | nindent 4 }}
+    {{- with $.Values.app.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- if .annotations }}
+  annotations:
+    {{- toYaml .annotations | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ .type }}
+  ports:
+    {{- range .ports }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      targetPort: {{ .targetPort }}
+      protocol: TCP
+    {{- end }}
+  selector:
+    {{- include "app.selectorLabels" $ | nindent 4 }}
+    {{- with $.Values.app.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+{{- end }}
+{{- end }}
+
+

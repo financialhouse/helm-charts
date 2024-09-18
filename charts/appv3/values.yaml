@@ -121,6 +121,25 @@ service:
 #     port: 80
 #     targetPort: 8084
 
+# singleServiceMultiPort:
+#   - name: node-test2
+#     annotations:
+#       loadBalancerName: "cryptobunq-prod-node-test2"
+#       scheme: "internal"
+#       backendProtocol: "tcp"
+#       attributes: "load_balancing.cross_zone.enabled=true"
+#       securityGroups: "sg-08e833371be77cd44"
+#       targetType: "instance"
+#     type: LoadBalancer
+#     ports:
+#       - name: rpc
+#         port: 8332
+#         targetPort: 8332
+#       - name: p2p
+#         port: 8333
+#         targetPort: 8333
+
+
 pdb:
   enabled: false
   minAvailable: 1
