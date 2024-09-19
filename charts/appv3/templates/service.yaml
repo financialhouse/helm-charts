@@ -8,19 +8,33 @@ metadata:
     {{- with .Values.app.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  {{- if .Values.annotations }}
+  annotations:
+    {{- toYaml .Values.annotations | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
+    {{- if .Values.service.multiplePorts }}
+    {{- range .Values.service.multiplePorts }}
+    - name: {{ .name | quote }}
+      protocol: TCP
+      port: {{ .port }}
+      targetPort: {{ .targetPort }}
+    {{- end }}
+    {{- else }}
     - name: http
       protocol: TCP
       port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
+    {{- end }}
   selector:
     {{- include "app.selectorLabels" . | nindent 4 }}
     {{- with .Values.app.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
 {{- end }}
+
 ---
 {{- if .Values.multiService }}
 {{- range .Values.multiService }}
@@ -33,6 +47,10 @@ metadata:
     {{- with $.Values.app.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
+  {{- if .annotations }}
+  annotations:
+    {{- toYaml .annotations | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .type }}
   ports:
@@ -48,3 +66,5 @@ spec:
 ---
 {{- end }}
 {{- end }}
+
+

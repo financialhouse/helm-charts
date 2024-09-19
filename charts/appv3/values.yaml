@@ -110,6 +110,14 @@ service:
   type: NodePort
   port: 80
   targetPort: 8081
+  # multiplePorts:
+  #   - name: http
+  #     port: 80
+  #     targetPort: 8081
+  #   - name: https
+  #     port: 443
+  #     targetPort: 8081
+  
   
 # multiService:
 #   - name: "bahama-sandbox-pool1"
@@ -120,6 +128,8 @@ service:
 #     type: NodePort
 #     port: 80
 #     targetPort: 8084
+
+
 
 pdb:
   enabled: false
