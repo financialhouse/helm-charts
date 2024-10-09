@@ -305,8 +305,13 @@ volumes: {}
 #     - name: redis
 #       externalName: eks-test.bq7fff.ng.0001.euw1.cache.amazonaws.com
 
-# volumeClaim:
-#   name: scratch-volume
-#   accessMode: ReadWriteOnce
-#   storageClass: standard
-#   size: 10Gi
+# staticVolume:
+#   name: "bahama-sandbox-pool1"
+#   accessMode: "ReadWriteOnce"
+#   storage: "10Gi"
+#   driver: "ebs.csi.aws.com"
+#   fsType: "ext4"
+#   volumeHandle: "vol-0b3b3b3b3b3b3b3b3"
+#   storageClassName: "gp3"
+#   nodeAffinity:
+#     region: "eu-west-1a"

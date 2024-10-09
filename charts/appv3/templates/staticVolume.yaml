@@ -1,0 +1,24 @@
+{{- if .Values.staticVolume }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.staticVolume.name }}
+spec:
+  accessModes:
+    - {{ .Values.staticVolume.accessMode }}
+  capacity:
+    storage: {{ .Values.staticVolume.storage }}
+  csi:
+    driver: {{ .Values.staticVolume.driver | default "ebs.csi.aws.com" }}
+    fsType: {{ .Values.staticVolume.fsType | default "ext4" }}
+    volumeHandle: {{ .Values.staticVolume.volumeHandle }}
+  storageClassName: {{ .Values.staticVolume.storageClassName | default "gp3" }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: topology.kubernetes.io/zone
+              operator: In
+              values:
+                - {{ .Values.staticVolume.nodeAffinity.region | default "eu-west-1a" }}
+{{- end }}

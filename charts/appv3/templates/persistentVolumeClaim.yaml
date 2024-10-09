@@ -7,6 +7,9 @@ spec:
   accessModes: 
     - {{ .Values.volumeClaim.accessMode }}
   storageClassName: {{ .Values.volumeClaim.storageClass }}
+  {{- if .Values.volumeClaim.volumeName }}
+  volumeName: {{ .Values.volumeClaim.volumeName }}
+  {{- end }}
   resources:
     requests:
       storage: {{ .Values.volumeClaim.size }}
