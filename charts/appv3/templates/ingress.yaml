@@ -116,3 +116,4 @@ spec:
     {{- toYaml $ingress.rules | nindent 4 }}
 {{- end }}
 {{- end }}
+{{- end }}
