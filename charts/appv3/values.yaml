@@ -106,10 +106,10 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-service:
-  type: NodePort
-  port: 80
-  targetPort: 8081
+#service:
+  #type: NodePort
+  #port: 80
+  #targetPort: 8081
   # multiplePorts:
   #   - name: http
   #     port: 80
