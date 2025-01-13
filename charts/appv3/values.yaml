@@ -6,11 +6,11 @@ environment: "sandbox"
 replicaCount: 1
 imagePullSecrets:
   - name: dockerhub
-deployment:
-  strategy: "RollingUpdate"
-  maxSurge: "100%"
-  maxUnavailable: 0 
-serviceAccount: cverse-test-api
+  #deployment:
+  #  strategy: "RollingUpdate" # or "Recreate" if you set Recreate, you can remove maxSurge and maxUnavailable
+  #  maxSurge: "100%"
+  #  maxUnavailable: 0 
+  #serviceAccount: cverse-test-api
 
 nodeSelector: {}
 
