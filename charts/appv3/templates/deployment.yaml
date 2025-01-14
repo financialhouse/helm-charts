@@ -10,8 +10,17 @@ metadata:
 spec:
   {{- if .Values.deployment }}
   {{- if .Values.deployment.strategy }}
+  {{- if eq .Values.deployment.strategy "Recreate" }}
   strategy:
-    type: {{ .Values.deployment.strategy | quote }}
+    type: {{ .Values.deployment.strategy | quote | default "Recreate" }}
+  {{- end }}
+  {{- if eq .Values.deployment.strategy "RollingUpdate" }}
+  strategy:
+    type: {{ .Values.deployment.strategy | quote | default "RollingUpdate" }}
+    rollingUpdate:
+      maxSurge: {{ .Values.deployment.maxSurge }}
+      maxUnavailable: {{ .Values.deployment.maxUnavailable }}
+  {{- end }}
   {{- end }}
   {{- end }}
   {{- if not .Values.autoscaling.enabled }}
