@@ -9,7 +9,8 @@ imagePullSecrets:
   #deployment:
   #  strategy: "RollingUpdate" # or "Recreate" if you set Recreate, you can remove maxSurge and maxUnavailable
   #  maxSurge: "100%"
-  #  maxUnavailable: 0 
+  #  maxUnavailable: 0
+  #  annotations: {}
   #serviceAccount: cverse-test-api
 
 nodeSelector: {}
@@ -119,8 +120,8 @@ podSecurityContext: {}
   #   - name: https
   #     port: 443
   #     targetPort: 8081
-  
-  
+
+
 # multiService:
 #   - name: "bahama-sandbox-pool1"
 #     type: NodePort
