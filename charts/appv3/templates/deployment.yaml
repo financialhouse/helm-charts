@@ -7,9 +7,13 @@ metadata:
     {{- with .Values.app.labels }}
     {{- toYaml . | nindent 4 }}
     {{- end }}
- {{- with .Values.deploymentAnnotations }}
+ {{- if .Values.deployment }}
+ {{- if .Values.deployment.annotations }}
+ {{- with .Values.deployment.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
+ {{- end }}
+ {{- end }}
  {{- end }}
 spec:
   {{- if .Values.deployment }}

@@ -68,3 +68,17 @@ Return the default image tag app version
 {{- define "app_image.defaultTag" -}}
   {{- default .Chart.AppVersion .Values.image.tag }}
 {{- end -}}
+
+
+{{/*
+Common annotations
+*/}}
+{{- define "app.annotations" -}}
+helm.sh/chart: {{ include "app.chart" . }}
+{{ include "app.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+environment: {{ .Values.environment }}
+{{- end }}
