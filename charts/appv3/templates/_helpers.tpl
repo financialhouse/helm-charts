@@ -68,3 +68,4 @@ Return the default image tag app version
 {{- define "app_image.defaultTag" -}}
   {{- default .Chart.AppVersion .Values.image.tag }}
 {{- end -}}
+
