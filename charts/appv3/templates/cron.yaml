@@ -29,6 +29,7 @@ spec:
             {{- end }}
         spec:
           restartPolicy: OnFailure
+          serviceAccountName: {{ include "app.serviceAccountName" . }}
           {{- with .Values.cron_job.containers }}
           containers:
             {{ . | toYaml | nindent 10}}
