@@ -1,9 +1,10 @@
-{{- if .Values.cron_job }}
+{{- if .Values.cron_jobs }}
+{{- range .Values.cron_jobs }}
 
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ include "app.fullname" . }}
+  name: {{ include "app.fullname" $ }}-{{ .name }}
   labels:
     app.kubernetes.io/managed-by: {{ $.Release.Service | quote }}
     app.kubernetes.io/instance: {{ $.Release.Name | quote }}
@@ -13,9 +14,9 @@ metadata:
     {{- toYaml . | nindent 4 }}
     {{- end }}
 spec:
-  schedule: {{ .Values.cron_job.schedule }}
-  successfulJobsHistoryLimit: {{ .Values.cron_job.successfulJobsHistoryLimit | default 1 }}
-  failedJobsHistoryLimit: {{ .Values.cron_job.failedJobsHistoryLimit | default 1 }}
+  schedule: {{ .schedule | quote }}
+  successfulJobsHistoryLimit: {{ .successfulJobsHistoryLimit | default 1 }}
+  failedJobsHistoryLimit: {{ .failedJobsHistoryLimit | default 1 }}
   jobTemplate:
     spec:
       template:
@@ -29,16 +30,14 @@ spec:
             {{- end }}
         spec:
           restartPolicy: OnFailure
-          serviceAccountName: {{ include "app.serviceAccountName" . }}
-          {{- with .Values.cron_job.containers }}
+          serviceAccountName: {{ include "app.serviceAccountName" $ }}
           containers:
-            {{ . | toYaml | nindent 10}}
-          {{- end }}
-          {{- if .Values.cron_job.volumes }}
-          {{- with .Values.cron_job.volumes }}
+            {{- toYaml .containers | nindent 12 }}
+          {{- if .volumes }}
           volumes:
-            {{ . | toYaml | nindent 10}}
-          {{- end }}
+            {{- toYaml .volumes | nindent 12 }}
           {{- end }}
 
+---
+{{- end }}
 {{- end }}
