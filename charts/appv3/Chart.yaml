@@ -2,5 +2,5 @@ apiVersion: v2
 name: appv3
 description: Base Helm Chart for Financialhouse frontend and backend applications.
 type: application
-version: "v0.0.19"
-appVersion: "v0.0.19"
+version: "v0.1.0"
+appVersion: "v0.1.0"
